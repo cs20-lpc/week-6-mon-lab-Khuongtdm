@@ -7,7 +7,21 @@ using namespace std;
  * Function prototype
 *******************************************************************************/
 
-void towerHanoi(int, string, string, string, int&);
+//void towerHanoi(int, string, string, string, int&);
+void towerHanoi(int discs, string start, string temp, string goal, int& numMoves)
+{
+    if (discs == 0)
+        return;
+
+    towerHanoi(discs-1, start, goal, temp, numMoves);
+    cout << "Moving disc " << discs << " from " << start << " to " << goal << endl;
+    towerHanoi(discs - 1, temp, start, goal, numMoves);
+ 
+
+    numMoves++;
+        
+
+}
 
 /*******************************************************************************
  * Description:

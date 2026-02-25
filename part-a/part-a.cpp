@@ -8,17 +8,30 @@ using namespace std;
 /*******************************************************************************
  * Function prototype
 *******************************************************************************/
-
+// since it go through the array, the time complexity is >= O(n)
 template <typename T>
-T findMaxRecTail(const T[] arr, const int size, int = 0)
+T findMaxRecTail(const T arr[], const int size, int i = 0)
 {
     // TO DO: Implement your code
+    if (i == size)
+        return arr[i];
+    T maxNum = findMaxRecTail(arr, size, i+1);
+    if (arr[i] > maxNum)
+        return arr[i];
+    else{
+        return maxNum;
+    }
 }
-
+// since it go through the array, the time complexity is >= O(n)
 template <typename T>
-T findMaxRecBinarySplit(const T[] arr, const int left, const int right)
+T findMaxRecBinarySplit(const T arr[], const int left, const int right)
 {
     // TO DO: Implement your code
+    if (left == right)
+        return arr[left];
+    int mid = left + (right - left) / 2;
+    return max(findMaxRecBinarySplit(arr, mid+1, right), findMaxRecBinarySplit(arr, left, mid));
+    
 }
 /*******************************************************************************
  * Description:
@@ -44,8 +57,8 @@ int main() {
     // display the maximum
     cout << setfill('-') << setw(40) << "" << endl;
     cout << "Maximum using Recursion: "
-         << findMaxRecTail(myArray, SIZE) << endl 
-         << "From Binary split:" 
+        << findMaxRecTail(myArray, SIZE) << endl
+        << "From Binary split:" << endl
         << findMaxRecBinarySplit(myArray, 0, SIZE-1)
          << "Should be 130 for the fixed array\n";
     cout << setfill('-') << setw(40) << "" << endl << endl;

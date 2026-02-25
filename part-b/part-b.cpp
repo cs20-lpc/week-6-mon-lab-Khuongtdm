@@ -6,7 +6,7 @@ using namespace std;
 /*******************************************************************************
  * Function prototype
 *******************************************************************************/
-
+//Since each call 2 small recursive sub-problems, and the work is double every additional disc time so O(2^n)
 //void towerHanoi(int, string, string, string, int&);
 void towerHanoi(int discs, string start, string temp, string goal, int& numMoves)
 {
